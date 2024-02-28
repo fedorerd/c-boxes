@@ -1,0 +1,32 @@
+[toolchain]
+
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+c_boxes = "CBoxNpgGfdEjBNdtGE9WrvZWevadyzviGz7anY2fxm6M"
+
+[registry]
+url = "https://api.apr.dev"
+
+[test.validator]
+url = "https://devnet.helius-rpc.com/?api-key=575963e3-d184-4818-807e-9212ba40cd2d"
+
+[[test.validator.clone]]
+address = "cmtDvXumGCrqC1Age74AVPhSRVXJMd8PJS91L8KbNCK"
+
+[[test.validator.clone]]
+address = "BGUMAp9Gq7iTEuizy4pqaxsTyUCBK68MDfK752saRPUY"
+
+[[test.validator.clone]]
+address = "noopb9bkMVfRPU8AsbpTUg8AQkHtKwMYZiFUjNRtMmV"
+
+[provider]
+cluster = "Localnet"
+wallet = "/Users/admin/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+create = "yarn run create"
+withdraw = "yarn run withdraw"
