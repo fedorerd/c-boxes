@@ -1,5 +1,9 @@
 ### CBoxex
 
+cBox program allows cNFT holder to sign any transaction on behalf of cNFT-linked PDA.
+Essentially, cNFT acts as a transferable wallet.
+cBox is a generic proxy, so there are no limits what you could sign with your cNFT.
+
 ## Program
 
 Devnet programId:
