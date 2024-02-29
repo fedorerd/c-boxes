@@ -12,7 +12,7 @@ export function useCNftData (...[id]: UseCNftDataProps) {
     )
 }
 
-export type UseNftsByOwnerDataProps = [owner: string]
+export type UseNftsByOwnerDataProps = [owner: string | null]
 
 export function useNftsByOwnerData (...[owner]: UseNftsByOwnerDataProps) {
     return useSWR(

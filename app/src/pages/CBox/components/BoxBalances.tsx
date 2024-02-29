@@ -19,8 +19,8 @@ export const BoxBalances: FC = () => {
 
     const { sendAlert, removeAlert } = useAlerts()
 
-    const onWithdraw = async () => {
-        if (!publicKey || !signTransaction || !boxCNft || !data) return
+    const onWithdraw = async (amount: number) => {
+        if (!publicKey || !signTransaction || !boxCNft) return
         let currentAlertId = 0
 
         try {
@@ -31,7 +31,7 @@ export const BoxBalances: FC = () => {
                 infinite: true
             })
     
-            const ix = await createWithdrawSolInstruction(boxCNft, publicKey, Number(data.basisPoints))
+            const ix = await createWithdrawSolInstruction(boxCNft, publicKey, amount)
             const tx = new web3.Transaction().add(ix)
             const { blockhash } = await connection.getLatestBlockhash()
             tx.recentBlockhash = blockhash
@@ -110,10 +110,10 @@ export const BoxBalances: FC = () => {
                     {data ? `$${data.identifier}` : '$SOL'}
                 </Typography>
                 {
-                    publicKey && boxCNft && publicKey.toString() === boxCNft.leafOwner
+                    publicKey && boxCNft && publicKey.toString() === boxCNft.leafOwner && data && Number(data.basisPoints) !== 0
                     ?
                     <CardActions>
-                        <Button size="small" onClick={() => onWithdraw()}>Withdraw</Button>
+                        <Button size="small" onClick={() => onWithdraw(Number(data.basisPoints))}>Withdraw</Button>
                     </CardActions>
                     : null
                 }
