@@ -11,7 +11,7 @@ c_boxes = "CBoxNpgGfdEjBNdtGE9WrvZWevadyzviGz7anY2fxm6M"
 url = "https://api.apr.dev"
 
 [test.validator]
-url = "https://devnet.helius-rpc.com/?api-key=575963e3-d184-4818-807e-9212ba40cd2d"
+url = "https://api.devnet.solana.com/"
 
 [[test.validator.clone]]
 address = "cmtDvXumGCrqC1Age74AVPhSRVXJMd8PJS91L8KbNCK"
