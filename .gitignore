@@ -10,6 +10,5 @@ test-ledger
 keys
 scripts
 tests
-app
 
 .env

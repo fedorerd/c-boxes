@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0C0C0C;
+  overflow-y: scroll;
+}
+
+body div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section.page {
+  min-width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+input, textarea {
+  outline: none;
+  border: none;
+}
+
+input[type="search"]::-ms-clear,
+input[type="search"]::-ms-reveal {
+  display: none;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+textarea {
+  resize: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+
+img {
+  user-select: none;
+}
+
+section.content {
+  width: 100%;
+  max-width: 1600px;
+  min-height: 100vh;
+  padding: 32px 24px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.alerts {
+  position: fixed;
+  flex-direction: column;
+  gap: 16px;
+  bottom: 16px;
+  left: 32px;
+  z-index: 11;
+  align-items: flex-start;
+}
