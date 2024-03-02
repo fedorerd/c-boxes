@@ -3,7 +3,8 @@ use anchor_lang::{
     solana_program::{
         program::invoke_signed,
         instruction::{AccountMeta, Instruction}
-    }
+    },
+    system_program::ID as SYSTEM_PROGRAM_ID
 };
 use mpl_bubblegum::{
     instructions::VerifyLeafCpiBuilder,
@@ -73,7 +74,11 @@ pub mod c_boxes {
         let box_signer_seeds = &[box_asset_id.as_ref(), &[ctx.bumps.box_signer]];
 
         invoke_signed(&ix, &target_account_infos, &[&box_signer_seeds[..]])?;
-
+        
+        if ctx.accounts.box_signer.owner.ne(&SYSTEM_PROGRAM_ID) {
+            return Err(error!(CBoxError::BoxSignerNotOwnedBySystem))
+        }
+        
         Ok(())
     }
 }
@@ -95,7 +100,7 @@ pub struct Execute<'info> {
     pub box_owner: Signer<'info>,
     /// CHECK: Used in VerifyLeaf CPI & address used to retrieve asset id
     pub box_merkle_tree: UncheckedAccount<'info>,
-    /// CHECK: Seeds validation is enough, could be anything
+    /// CHECK: Seeds validation is enough, account owner validated in the end of instruction (important, since we don't want this account to be owned by anything but System)
     #[account(
         seeds = [get_asset_id(box_merkle_tree.key, data.box_nonce).as_ref()],
         bump
@@ -112,4 +117,10 @@ pub struct Execute<'info> {
     /// CHECK: Used to CPI only
     #[account(constraint = target_program.key() != ID)]
     pub target_program: UncheckedAccount<'info>,
+}
+
+#[error_code]
+pub enum CBoxError {
+    #[msg("Box signer must remain a SystemProgram account at the end of instruction")]
+    BoxSignerNotOwnedBySystem
 }
