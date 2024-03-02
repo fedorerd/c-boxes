@@ -13,14 +13,17 @@ url = "https://api.apr.dev"
 [test.validator]
 url = "https://api.devnet.solana.com/"
 
-[[test.validator.clone]]
+[[test.genesis]]
 address = "cmtDvXumGCrqC1Age74AVPhSRVXJMd8PJS91L8KbNCK"
+program = ".anchor/spl_compression.so"
 
-[[test.validator.clone]]
+[[test.genesis]]
 address = "BGUMAp9Gq7iTEuizy4pqaxsTyUCBK68MDfK752saRPUY"
+program = ".anchor/bubblegum.so"
 
-[[test.validator.clone]]
+[[test.genesis]]
 address = "noopb9bkMVfRPU8AsbpTUg8AQkHtKwMYZiFUjNRtMmV"
+program = ".anchor/noop.so"
 
 [provider]
 cluster = "Localnet"
