@@ -10,8 +10,7 @@ export function deriveBoxSigner (id: PublicKey) {
 
 export function deriveCNftId (tree: PublicKey, nonce: number) {
     const boxNonce = Buffer.alloc(8)
-    boxNonce.writeUInt32LE(nonce >> 8, 4)
-    boxNonce.writeUint32LE(nonce & 0x00ff, 0)
+    boxNonce.writeBigInt64LE(BigInt(nonce), 0)
     return PublicKey.findProgramAddressSync(
         [Buffer.from("asset"), tree.toBuffer(), boxNonce],
         MPL_BUBBLEGUM_PROGRAM_ID
