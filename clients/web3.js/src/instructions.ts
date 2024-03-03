@@ -25,8 +25,7 @@ export function createExecuteInstruction ({
 }: CreateExecuteInstructionInput): TransactionInstruction {
 
     const boxNonce = Buffer.alloc(8)
-    boxNonce.writeUInt32LE(cnft.nonce >> 8, 4)
-    boxNonce.writeUint32LE(cnft.nonce & 0x00ff, 0)
+    boxNonce.writeBigInt64LE(BigInt(cnft.nonce), 0)
     const boxIndex = Buffer.alloc(4)
     boxIndex.writeUint32LE(cnft.index)
     const boxProofsLength = Buffer.alloc(1)
